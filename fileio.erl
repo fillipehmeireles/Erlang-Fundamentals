@@ -21,10 +21,12 @@ reader(File,_) ->
 process_lines(IoDevice) ->
   case io:get_line(IoDevice, "") of
     eof ->
-      ok;        {error, Reason} ->
+      ok;
+    {error, Reason} ->
       io:format("Error reading line: ~p~n", [Reason]);
     Line ->
-      process_line(Line),             process_lines(IoDevice)
+      process_line(Line),            
+      process_lines(IoDevice)
   end.
 
 process_line(Line) ->
